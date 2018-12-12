@@ -43,7 +43,7 @@ type Network struct {
 	CDPDevice    string    `xml:"cdp-device"`
 	CDPPortID    string    `xml:"cdp-portid"`
 	SeenCard     SeenCard  `xml:"seen-card"`
-	Clients      []Clients `xml:"wireless-clients"`
+	Clients      []Client  `xml:"wireless-clients"`
 }
 
 type SSID struct {
@@ -91,7 +91,7 @@ type SeenCard struct {
 	SeenPackets int    `xml:"seen-packets"`
 }
 
-type Clients struct {
+type Client struct {
 	ClientMAC   string   `xml:"client-mac"`
 	ClientManuf string   `xml:"client-manuf"`
 	Channel     int      `xml:"channel"`
@@ -100,8 +100,10 @@ type Clients struct {
 	Packets     Packets  `xml:"packets"`
 	DataSize    int      `xml:"datasize"`
 	SNRInfo     SNRInfo  `xml:"snr-info"`
-	SeenCard    SeenCard `xml:"snr-info"`
+	SeenCard    SeenCard `xml:"seen-card"`
+	Probes		  []SSID   `xml:"SSID"`
 }
+
 
 // Parse takes a byte array of sslscan xml data and unmarshals it into an
 // KismetRun struct. All elements are returned as strings, it is up to the caller
